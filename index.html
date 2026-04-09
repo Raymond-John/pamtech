@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pamtech Automobile - Premium Automotive Services</title>
+    <meta name="description"
+        content="Pamtech Automobile - Your trusted partner for Oil & Gas, Car Sales, Autoparts, Luxury Rides, Real Estate, and Media services in Nigeria.">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <style>
+        /* ============================================
+           PAMTECH AUTOMOBILE - MAIN STYLESHEET
+           Theme: Dark + Custom Red (#c20906) & Dark Blue (#002450)
+           ============================================ */
+
+        /* CSS Variables */
+        :root {
+            --primary-red: #c20906;
+            --primary-red-light: #e03a2e;
+            --primary-blue: #002450;
+            --primary-blue-light: #003a7a;
+            --primary-white: #FFFFFF;
+            --bg-main: #FFFFFF;
+            --bg-section: #F8FAFC;
+            --bg-card: #EAF1FF;
+            --text-dark: #002450;
+            --text-light: #020202;
+            --text-muted: #6B7280;
+            --accent-red: #c20906;
+            --accent-blue: #002450;
+            --gradient-primary: linear-gradient(135deg, #002450, #c20906);
+            --gradient-hero: linear-gradient(135deg, rgba(0, 36, 80, 0.85), rgba(194, 9, 6, 0.8));
+            --shadow-soft: 0 4px 15px rgba(0, 36, 80, 0.15);
+            --shadow-card: 0 8px 25px rgba(0, 0, 0, 0.1);
+            --shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 20px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-fast);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-family: inherit;
+            transition: var(--transition-fast);
+        }
+
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+            outline: none;
+            border: none;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            color: #ffffff;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-sm);
+        }
+
+        .text-gold {
+            color: #c20906;
+        }
+
+        .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            transition: var(--transition-normal);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(194, 9, 6, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(194, 9, 6, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #c20906;
+            border: 2px solid #c20906;
+        }
+
+        .btn-secondary:hover {
+            background: #c20906;
+            color: white;
+        }
+
+        .btn-dark {
+            background: #1a1a2e;
+            color: white;
+            border: 1px solid rgba(194, 9, 6, 0.3);
+        }
+
+        .btn-dark:hover {
+            background: #c20906;
+            color: white;
+            border-color: #c20906;
+        }
+
+        .btn-sm {
+            padding: 8px 20px;
+            font-size: 0.875rem;
+        }
+
+        .btn-lg {
+            padding: 18px 48px;
+            font-size: 1.125rem;
+        }
+
+        .card {
+            background: #1e1e2a;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition-normal);
+            border: 1px solid rgba(194, 9, 6, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-card);
+            border-color: rgba(194, 9, 6, 0.3);
+        }
+
+        .grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(194, 9, 6, 0.2);
+            transition: var(--transition-normal);
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 36, 80, 0.98);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-icon img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            color: white;
+        }
+
+        .logo-text span {
+            color: #c20906;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link {
+            padding: 10px 18px;
+            color: #e0e0e0;
+            font-weight: 500;
+            border-radius: var(--radius-md);
+            transition: var(--transition-fast);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #c20906;
+            background: rgba(194, 9, 6, 0.1);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cart-icon {
+            position: relative;
+            padding: 10px;
+            color: #e0e0e0;
+            font-size: 1.25rem;
+            transition: var(--transition-fast);
+        }
+
+        .cart-icon:hover {
+            color: #c20906;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            background: #c20906;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
+            background: none;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 2px;
+            background: white;
+            transition: var(--transition-fast);
+        }
+
+        /* Hero Carousel */
+        .hero-carousel {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .carousel-slides {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 36, 80, 0.75), rgba(194, 9, 6, 0.7));
+            z-index: 1;
+        }
+
+        .carousel-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+            width: 90%;
+            max-width: 900px;
+            color: white;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .carousel-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(194, 9, 6, 0.2);
+            border: 1px solid #c20906;
+            border-radius: 50px;
+            color: #c20906;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .carousel-content h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .carousel-content h1 span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .carousel-tagline {
+            font-size: 1.25rem;
+            color: #e0e0e0;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .carousel-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 3;
+            transition: var(--transition-normal);
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .carousel-arrow:hover {
+            background: #c20906;
+        }
+
+        .carousel-arrow.prev {
+            left: 20px;
+        }
+
+        .carousel-arrow.next {
+            right: 20px;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 3;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+
+        .carousel-dot.active {
+            background: #c20906;
+            width: 30px;
+            border-radius: 20px;
+        }
+
+        /* Services */
+        .services-section {
+            background-color: #0a0a0a;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #1e1e2a;
+            border-radius: var(--radius-lg);
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition-normal);
+            border: 1px solid rgba(194, 9, 6, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: var(--transition-normal);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-card);
+            border-color: rgba(194, 9, 6, 0.3);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(194, 9, 6, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 2rem;
+            color: #c20906;
+            transition: var(--transition-normal);
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--gradient-primary);
+            color: white;
+            transform: rotateY(360deg);
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .service-description {
+            color: #a0a0a0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #c20906;
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+
+        .service-link:hover {
+            gap: 12px;
+        }
+
+        /* Products & Properties Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            background: #1e1e2a;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition-normal);
+            border: 1px solid rgba(194, 9, 6, 0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-card);
+            border-color: rgba(194, 9, 6, 0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #c20906;
+            margin-bottom: 16px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .product-actions .btn {
+            flex: 1;
+            padding: 12px;
+            font-size: 0.875rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0a0f;
+            border-top: 1px solid rgba(194, 9, 6, 0.15);
+            padding: 80px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand p {
+            color: #a0a0a0;
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: #1a1a2e;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            transition: var(--transition-fast);
+        }
+
+        .social-link:hover {
+            background: #c20906;
+            color: white;
+        }
+
+        .footer-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: white;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: #c20906;
+            padding-left: 8px;
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: #a0a0a0;
+        }
+
+        .footer-contact i {
+            color: #c20906;
+            margin-top: 4px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(194, 9, 6, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: #a0a0a0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .carousel-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu,
+            .nav-actions .nav-btn {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: flex;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .carousel-arrow {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-content h1 {
+                font-size: 2rem;
+            }
+            .carousel-tagline {
+                font-size: 1rem;
+            }
+            .section {
+                padding: 50px 0;
+            }
+        }
+
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #1e1e2a;
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: var(--shadow-card);
+            border-left: 4px solid #c20906;
+            z-index: 3000;
+            transform: translateX(150%);
+            transition: var(--transition-normal);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* ============================================
+           WORLD-CLASS SCROLL TO TOP BUTTON (PERCENTAGE)
+           ============================================ */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #1e1e2a;
+            border: 2px solid rgba(194, 9, 6, 0.7);
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            cursor: pointer;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.7);
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(194, 9, 6, 0.2);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        .scroll-top-btn:hover {
+            background: #c20906;
+            border-color: #c20906;
+            transform: scale(1.08);
+            box-shadow: 0 12px 28px rgba(194, 9, 6, 0.4);
+        }
+
+        .scroll-top-btn:active {
+            transform: scale(0.96);
+        }
+
+        .scroll-top-btn i {
+            font-size: 20px;
+            margin-bottom: 2px;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+        }
+
+        .scroll-percent-text {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            background: rgba(0,0,0,0.6);
+            padding: 0px 4px;
+            border-radius: 20px;
+            line-height: 1.2;
+        }
+
+        .scroll-top-btn:hover .scroll-percent-text {
+            background: rgba(0,0,0,0.8);
+        }
+
+        /* subtle ring pulse effect */
+        @keyframes softPulse {
+            0% { box-shadow: 0 0 0 0 rgba(194, 9, 6, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(194, 9, 6, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(194, 9, 6, 0); }
+        }
+
+        .scroll-top-btn.visible {
+            animation: softPulse 1.5s infinite;
+        }
+
+        .scroll-top-btn:hover {
+            animation: none;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-top-btn {
+                width: 54px;
+                height: 54px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .scroll-top-btn i {
+                font-size: 18px;
+            }
+            .scroll-percent-text {
+                font-size: 10px;
+            }
+        }
+
+        /* ============================================
+           WORLD-CLASS HAMBURGER MENU (MOBILE DRAWER)
+           ============================================ */
+        .mobile-drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .mobile-drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: min(85%, 320px);
+            height: 100%;
+            background: #0f0f17;
+            backdrop-filter: blur(20px);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            z-index: 2001;
+            transition: right 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid rgba(194, 9, 6, 0.3);
+        }
+
+        .mobile-drawer.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 20px;
+            border-bottom: 1px solid rgba(194, 9, 6, 0.2);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .drawer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .drawer-logo span {
+            color: #c20906;
+        }
+
+        .drawer-close {
+            width: 40px;
+            height: 40px;
+            background: rgba(194, 9, 6, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .drawer-close:hover {
+            background: #c20906;
+            transform: rotate(90deg);
+        }
+
+        .drawer-nav {
+            flex: 1;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .drawer-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #e0e0e0;
+            border-radius: var(--radius-md);
+            transition: all 0.25s;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+        }
+
+        .drawer-nav-link i {
+            width: 24px;
+            color: #c20906;
+            font-size: 1.2rem;
+        }
+
+        .drawer-nav-link:hover, .drawer-nav-link.active {
+            background: rgba(194, 9, 6, 0.12);
+            border-color: rgba(194, 9, 6, 0.3);
+            color: white;
+            transform: translateX(6px);
+        }
+
+        .drawer-footer {
+            padding: 24px 20px 40px;
+            border-top: 1px solid rgba(194, 9, 6, 0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .drawer-auth-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--gradient-primary);
+            padding: 12px;
+            border-radius: var(--radius-md);
+            color: white;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .drawer-auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(194, 9, 6, 0.3);
+        }
+
+        .drawer-social {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 8px;
+        }
+
+        .drawer-social a {
+            width: 38px;
+            height: 38px;
+            background: #1a1a2e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e0e0e0;
+            transition: 0.2s;
+        }
+
+        .drawer-social a:hover {
+            background: #c20906;
+            color: white;
+        }
+
+        body.drawer-open {
+            overflow: hidden;
+        }
+
+        /* ============================================
+           WORLD-CLASS HOVER EFFECTS (CTAs + NAVBAR)
+           ============================================ */
+
+        /* --- NAVBAR LINK HOVER EFFECTS (premium underline + subtle scale) --- */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease, background 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #c20906, #ff4d4d);
+            transition: width 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1), left 0.35s ease;
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after {
+            width: 70%;
+            left: 15%;
+        }
+
+        .nav-link:hover {
+            color: #c20906;
+            text-shadow: 0 0 5px rgba(194, 9, 6, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* active link gets a permanent underline accent */
+        .nav-link.active::after {
+            width: 70%;
+            left: 15%;
+            background: #c20906;
+        }
+
+        /* --- CTA BUTTONS (all .btn classes) --- */
+        .btn {
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* premium glow & scale */
+        .btn-primary:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 12px 28px rgba(194, 9, 6, 0.5);
+            letter-spacing: 1px;
+        }
+
+        .btn-secondary:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 20px rgba(194, 9, 6, 0.4);
+            background: #c20906;
+            border-color: #c20906;
+            letter-spacing: 1px;
+        }
+
+        .btn-dark:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+            background: #c20906;
+            border-color: #c20906;
+        }
+
+        /* icon movement on CTA hover */
+        .btn i, .service-link i, .drawer-auth-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover i, .service-link:hover i, .drawer-auth-btn:hover i {
+            transform: translateX(5px) scale(1.1);
+        }
+
+        /* service link hover effect */
+        .service-link {
+            transition: gap 0.3s ease, color 0.2s;
+        }
+        .service-link:hover {
+            gap: 14px;
+            color: #ff4d4d;
+            text-shadow: 0 0 3px rgba(194,9,6,0.3);
+        }
+
+        /* product card action buttons */
+        .product-actions .btn {
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .product-actions .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 14px rgba(194, 9, 6, 0.4);
+        }
+
+        /* carousel buttons */
+        .carousel-buttons .btn:hover {
+            transform: scale(1.05) translateY(-3px);
+        }
+
+        /* footer social links */
+        .social-link {
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 6px 12px rgba(194, 9, 6, 0.3);
+        }
+
+        /* footer contact & link hovers */
+        .footer-links a {
+            transition: all 0.25s ease;
+        }
+        .footer-links a:hover {
+            padding-left: 12px;
+            color: #c20906;
+            text-shadow: 0 0 4px rgba(194,9,6,0.2);
+        }
+
+        /* cart icon hover */
+        .cart-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            color: #c20906;
+        }
+
+        /* mobile drawer links already have transformX, we add extra glow */
+        .drawer-nav-link:hover {
+            transform: translateX(8px);
+            box-shadow: 0 2px 8px rgba(194, 9, 6, 0.2);
+        }
+
+        /* Login button in nav */
+        .nav-actions .btn-primary.btn-sm:hover {
+            transform: scale(1.08) translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="/img/download (3).png" alt="Pamtech Logo" style="height: 40px; width: auto;">
+                </div>
+                <span class="logo-text">Pam<span>tech</span></span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="fuel.html" class="nav-link">Oil & Gas</a></li>
+                <li><a href="cars.html" class="nav-link">Autoland</a></li>
+                <li><a href="autoparts.html" class="nav-link">Autoparts</a></li>
+                <li><a href="luxury-rides.html" class="nav-link">Luxury Ride</a></li>
+                <li><a href="properties.html" class="nav-link">Real Estate</a></li>
+                <li><a href="media.html" class="nav-link">Media</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+                <a href="login.html" class="btn btn-primary btn-sm auth-link">
+                    <i class="fas fa-user"></i> Login
+                </a>
+                <button class="mobile-menu-btn" id="hamburgerBtn" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay & Panel -->
+    <div class="mobile-drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <div class="drawer-logo">
+                <i class="fas fa-car" style="color: #c20906;"></i>
+                <span>Pam<span>tech</span></span>
+            </div>
+            <div class="drawer-close" id="drawerCloseBtn">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="drawer-nav">
+            <a href="index.html" class="drawer-nav-link active"><i class="fas fa-home"></i> Home</a>
+            <a href="fuel.html" class="drawer-nav-link"><i class="fas fa-gas-pump"></i> Oil & Gas</a>
+            <a href="cars.html" class="drawer-nav-link"><i class="fas fa-car-side"></i> Autoland</a>
+            <a href="autoparts.html" class="drawer-nav-link"><i class="fas fa-cogs"></i> Autoparts</a>
+            <a href="luxury-rides.html" class="drawer-nav-link"><i class="fas fa-taxi"></i> Luxury Ride</a>
+            <a href="properties.html" class="drawer-nav-link"><i class="fas fa-building"></i> Real Estate</a>
+            <a href="media.html" class="drawer-nav-link"><i class="fas fa-newspaper"></i> Media</a>
+            <a href="cart.html" class="drawer-nav-link"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-count-drawer" style="margin-left: auto; background:#c20906; padding:2px 8px; border-radius:20px; font-size:12px;">0</span></a>
+        </div>
+        <div class="drawer-footer">
+            <a href="login.html" class="drawer-auth-btn"><i class="fas fa-user-circle"></i> Sign In / Register</a>
+            <div class="drawer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Carousel Section -->
+    <section class="hero-carousel">
+        <div class="carousel-slides">
+            <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1600');">
+                <div class="carousel-content">
+                    <div class="carousel-badge"><i class="fas fa-crown"></i> Welcome to Excellence</div>
+                    <h1>Drive Your <span>Dream</span> Today</h1>
+                    <p class="carousel-tagline">Experience luxury and performance with our premium collection of vehicles. Your journey begins here.</p>
+                    <div class="carousel-buttons">
+                        <a href="cars.html" class="btn btn-primary btn-lg"><i class="fas fa-car"></i> Explore Vehicles</a>
+                        <a href="signup.html" class="btn btn-secondary btn-lg"><i class="fas fa-user-plus"></i> Join Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=1600');">
+                <div class="carousel-content">
+                    <div class="carousel-badge"><i class="fas fa-gas-pump"></i> Oil & Gas Solutions</div>
+                    <h1>Premium <span>Fuel</span> Services</h1>
+                    <p class="carousel-tagline">Digital fuel purchase with QR verification. Quality guaranteed at competitive prices.</p>
+                    <div class="carousel-buttons">
+                        <a href="fuel.html" class="btn btn-primary btn-lg"><i class="fas fa-gas-pump"></i> Buy Fuel</a>
+                        <a href="signup.html" class="btn btn-secondary btn-lg"><i class="fas fa-user-plus"></i> Get Started</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600');">
+                <div class="carousel-content">
+                    <div class="carousel-badge"><i class="fas fa-building"></i> Real Estate & Luxury</div>
+                    <h1>Invest in <span>Premium</span> Properties</h1>
+                    <p class="carousel-tagline">Discover exclusive properties in prime locations. Your dream home or investment awaits.</p>
+                    <div class="carousel-buttons">
+                        <a href="properties.html" class="btn btn-primary btn-lg"><i class="fas fa-building"></i> View Properties</a>
+                        <a href="luxury-rides.html" class="btn btn-secondary btn-lg"><i class="fas fa-taxi"></i> Luxury Rides</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-arrow prev" id="carouselPrev"><i class="fas fa-chevron-left"></i></div>
+        <div class="carousel-arrow next" id="carouselNext"><i class="fas fa-chevron-right"></i></div>
+        <div class="carousel-nav" id="carouselDots">
+            <div class="carousel-dot active" data-slide="0"></div>
+            <div class="carousel-dot" data-slide="1"></div>
+            <div class="carousel-dot" data-slide="2"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services-section" id="services">
+        <div class="container">
+            <h2 class="section-title">Our <span class="text-gradient">Services</span></h2>
+            <div class="services-grid">
+                <div class="service-card"><div class="service-icon"><i class="fas fa-gas-pump"></i></div><h3 class="service-title">Oil & Gas</h3><p class="service-description">Premium fuel solutions with digital payment and QR code verification. Purchase fuel seamlessly and track your transactions.</p><a href="fuel.html" class="service-link">Buy Fuel <i class="fas fa-arrow-right"></i></a></div>
+                <div class="service-card"><div class="service-icon"><i class="fas fa-car-side"></i></div><h3 class="service-title">Autoland</h3><p class="service-description">Explore our collection of premium vehicles for sale. From sedans to SUVs, find your dream car at competitive prices.</p><a href="cars.html" class="service-link">View Cars <i class="fas fa-arrow-right"></i></a></div>
+                <div class="service-card"><div class="service-icon"><i class="fas fa-cogs"></i></div><h3 class="service-title">Autoparts</h3><p class="service-description">Quality engine parts and accessories for all vehicle makes. Genuine parts with warranty and fast delivery.</p><a href="autoparts.html" class="service-link">Shop Parts <i class="fas fa-arrow-right"></i></a></div>
+                <div class="service-card"><div class="service-icon"><i class="fas fa-taxi"></i></div><h3 class="service-title">Luxury Ride</h3><p class="service-description">Rent premium vehicles for special occasions or business trips. Toyota Hilux, Prado, and more luxury options available.</p><a href="luxury-rides.html" class="service-link">Book a Ride <i class="fas fa-arrow-right"></i></a></div>
+                <div class="service-card"><div class="service-icon"><i class="fas fa-building"></i></div><h3 class="service-title">Real Estate</h3><p class="service-description">Discover premium properties in prime locations. Residential and commercial properties with excellent investment potential.</p><a href="properties.html" class="service-link">View Properties <i class="fas fa-arrow-right"></i></a></div>
+                <div class="service-card"><div class="service-icon"><i class="fas fa-newspaper"></i></div><h3 class="service-title">Media</h3><p class="service-description">Stay updated with the latest news, automotive tips, and company updates from the Pamtech Group.</p><a href="media.html" class="service-link">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Cars & Properties -->
+    <section class="section" style="background: url('/img/download\ \(9\).jpg') center/cover no-repeat;">
+        <div class="container">
+            <h2 class="section-title">Featured <span>Vehicles</span></h2>
+            <div class="products-grid" id="featured-cars"></div>
+            <div style="text-align: center; margin-top: 40px;"><a href="cars.html" class="btn btn-secondary btn-lg">View All Cars <i class="fas fa-arrow-right"></i></a></div>
+        </div>
+    </section>
+
+    <section class="section" style="background: url('/img/images\ \(7\).jpg') center/cover no-repeat;">
+        <div class="container">
+            <h2 class="section-title">Premium <span class="text-gradient">Properties</span></h2>
+            <div class="products-grid" id="featured-properties"></div>
+            <div style="text-align: center; margin-top: 40px;"><a href="properties.html" class="btn btn-secondary btn-lg">View All Properties <i class="fas fa-arrow-right"></i></a></div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #0a0a0a;">
+        <div class="container">
+            <h2 class="section-title">Why Choose <span class="text-gradient">Pamtech</span></h2>
+            <div class="grid grid-4" style="gap: 30px;">
+                <div style="text-align: center; padding: 30px;"><div style="width: 80px; height: 80px; background: rgba(194, 9, 6, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;"><i class="fas fa-award" style="font-size: 2rem; color: #c20906;"></i></div><h3 style="margin-bottom: 12px; color: white;">Quality Guaranteed</h3><p style="color: #a0a0a0;">All our products and services meet the highest quality standards.</p></div>
+                <div style="text-align: center; padding: 30px;"><div style="width: 80px; height: 80px; background: rgba(194, 9, 6, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;"><i class="fas fa-headset" style="font-size: 2rem; color: #c20906;"></i></div><h3 style="margin-bottom: 12px; color: white;">24/7 Support</h3><p style="color: #a0a0a0;">Our customer service team is always ready to assist you.</p></div>
+                <div style="text-align: center; padding: 30px;"><div style="width: 80px; height: 80px; background: rgba(194, 9, 6, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;"><i class="fas fa-shield-alt" style="font-size: 2rem; color: #c20906;"></i></div><h3 style="margin-bottom: 12px; color: white;">Secure Payments</h3><p style="color: #a0a0a0;">Your transactions are protected with industry-standard security.</p></div>
+                <div style="text-align: center; padding: 30px;"><div style="width: 80px; height: 80px; background: rgba(194, 9, 6, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;"><i class="fas fa-shipping-fast" style="font-size: 2rem; color: #c20906;"></i></div><h3 style="margin-bottom: 12px; color: white;">Fast Delivery</h3><p style="color: #a0a0a0;">Quick and reliable delivery for all your orders.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: linear-gradient(135deg, rgba(0, 36, 80, 0.95) 0%, rgba(194, 9, 6, 0.9) 100%);">
+        <div class="container" style="text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: white;">Ready to Get Started?</h2>
+            <p style="color: #e0e0e0; max-width: 600px; margin: 0 auto 30px; font-size: 1.125rem;">Contact us today and experience the Pamtech difference. Our team is ready to serve you.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://wa.me/2348012345678" class="btn btn-primary btn-lg" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                <a href="mailto:info@pamtech.com" class="btn btn-secondary btn-lg"><i class="fas fa-envelope"></i> Send Email</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand"><a href="index.html" class="logo" style="margin-bottom: 20px;"><div class="logo-icon"><i class="fas fa-car"></i></div><span class="logo-text">Pam<span>tech</span></span></a><p>Pamtech Automobile is a leading Nigerian conglomerate providing premium automotive and lifestyle services across multiple business units.</p><div class="social-links"><a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a><a href="#" class="social-link"><i class="fab fa-twitter"></i></a><a href="#" class="social-link"><i class="fab fa-instagram"></i></a><a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a></div></div>
+                <div><h4 class="footer-title">Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="cars.html">Autoland</a></li><li><a href="autoparts.html">Autoparts</a></li><li><a href="properties.html">Real Estate</a></li><li><a href="media.html">Media</a></li></ul></div>
+                <div><h4 class="footer-title">Services</h4><ul class="footer-links"><li><a href="fuel.html">Oil & Gas</a></li><li><a href="luxury-rides.html">Luxury Ride</a></li><li><a href="cars.html">Car Sales</a></li><li><a href="autoparts.html">Engine Parts</a></li></ul></div>
+                <div><h4 class="footer-title">Contact Us</h4><ul class="footer-contact"><li><i class="fas fa-map-marker-alt"></i><span>123 Admiralty Way, Lekki, Lagos, Nigeria</span></li><li><i class="fas fa-phone"></i><span>+234 801 234 5678</span></li><li><i class="fas fa-envelope"></i><span>info@pamtech.com</span></li><li><i class="fas fa-clock"></i><span>Mon - Sat: 8:00 AM - 6:00 PM</span></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2024 Pamtech Automobile. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top-btn" id="scrollTopBtn">
+        <i class="fas fa-chevron-up"></i>
+        <span class="scroll-percent-text" id="scrollPercentLabel">0%</span>
+    </div>
+
+    <script>
+        // Carousel logic (unchanged)
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const prevBtn = document.getElementById('carouselPrev');
+        const nextBtn = document.getElementById('carouselNext');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            currentSlide = index;
+        }
+        function nextSlide() { let next = currentSlide + 1; if (next >= slides.length) next = 0; showSlide(next); resetInterval(); }
+        function prevSlide() { let prev = currentSlide - 1; if (prev < 0) prev = slides.length - 1; showSlide(prev); resetInterval(); }
+        function resetInterval() { clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 5000); }
+        if (prevBtn && nextBtn) { prevBtn.addEventListener('click', prevSlide); nextBtn.addEventListener('click', nextSlide); }
+        dots.forEach(dot => dot.addEventListener('click', () => { showSlide(parseInt(dot.dataset.slide)); resetInterval(); }));
+        slideInterval = setInterval(nextSlide, 5000);
+
+        // Storage & Data
+        const Storage = {
+            get(key) { const data = localStorage.getItem(key); return data ? JSON.parse(data) : null; },
+            set(key, value) { localStorage.setItem(key, JSON.stringify(value)); },
+            init() {
+                if (!this.get('users')) this.set('users', []);
+                if (!this.get('currentUser')) this.set('currentUser', null);
+                if (!this.get('cars')) this.set('cars', [
+                    { id: 1, name: 'Toyota Camry XLE 2020', price: 18500000, image: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=600', year: 2020, mileage: 45000 },
+                    { id: 2, name: 'Lexus RX 350 2019', price: 28000000, image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600', year: 2019, mileage: 38000 },
+                    { id: 3, name: 'Honda Accord Sport 2021', price: 22000000, image: 'https://images.unsplash.com/photo-1605816988079-7f58fd69e3af?w=600', year: 2021, mileage: 25000 },
+                    { id: 4, name: 'Mercedes-Benz C300 2018', price: 32000000, image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600', year: 2018, mileage: 52000 }
+                ]);
+                if (!this.get('properties')) this.set('properties', [
+                    { id: 1, title: 'Luxury 5 Bedroom Duplex', price: 450000000, location: 'Lekki Phase 1, Lagos', image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600', bedrooms: 5, bathrooms: 6, area: '800 sqm' },
+                    { id: 2, title: 'Modern 3 Bedroom Apartment', price: 85000000, location: 'Ikoyi, Lagos', image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600', bedrooms: 3, bathrooms: 4, area: '350 sqm' },
+                    { id: 3, title: '4 Bedroom Terrace House', price: 120000000, location: 'Victoria Island, Lagos', image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600', bedrooms: 4, bathrooms: 5, area: '500 sqm' },
+                    { id: 4, title: 'Commercial Office Space', price: 250000000, location: 'Marina, Lagos', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600', bedrooms: 0, bathrooms: 4, area: '1000 sqm' }
+                ]);
+                if (!this.get('cart')) this.set('cart', []);
+            }
+        };
+        const Cart = {
+            getItems() { return Storage.get('cart') || []; },
+            getCount() { return this.getItems().reduce((total, item) => total + (item.quantity || 1), 0); },
+            updateCartCount() {
+                const count = this.getCount();
+                document.querySelectorAll('.cart-count').forEach(el => { el.textContent = count; el.style.display = count > 0 ? 'flex' : 'none'; });
+                const drawerCount = document.querySelector('.cart-count-drawer');
+                if (drawerCount) drawerCount.textContent = count;
+            }
+        };
+
+        // Scroll to top button logic
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        const percentSpan = document.getElementById('scrollPercentLabel');
+        function updateScrollPercentage() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            let percent = docHeight > 0 ? Math.min(100, Math.max(0, Math.floor((scrollTop / docHeight) * 100))) : 0;
+            if (percentSpan) percentSpan.innerText = `${percent}%`;
+            if (scrollTop > 200 || percent > 8) scrollBtn.classList.add('visible');
+            else scrollBtn.classList.remove('visible');
+        }
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        if (scrollBtn) { scrollBtn.addEventListener('click', scrollToTop); window.addEventListener('scroll', updateScrollPercentage); window.addEventListener('resize', updateScrollPercentage); updateScrollPercentage(); }
+
+        // Hamburger Menu (World-class Drawer)
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const drawerClose = document.getElementById('drawerCloseBtn');
+
+        function openDrawer() {
+            mobileDrawer.classList.add('open');
+            drawerOverlay.classList.add('active');
+            document.body.classList.add('drawer-open');
+        }
+        function closeDrawer() {
+            mobileDrawer.classList.remove('open');
+            drawerOverlay.classList.remove('active');
+            document.body.classList.remove('drawer-open');
+        }
+        if (hamburgerBtn) hamburgerBtn.addEventListener('click', openDrawer);
+        if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+        if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+        document.querySelectorAll('.drawer-nav-link').forEach(link => {
+            link.addEventListener('click', closeDrawer);
+        });
+
+        // DOMContentLoaded rendering
+        document.addEventListener('DOMContentLoaded', () => {
+            Storage.init();
+            Cart.updateCartCount();
+            const carsContainer = document.getElementById('featured-cars');
+            if (carsContainer) {
+                Storage.get('cars').slice(0,4).forEach(car => {
+                    const card = document.createElement('div'); card.className = 'product-card';
+                    card.innerHTML = `<img src="${car.image}" alt="${car.name}" class="product-image"><div class="product-info"><h3 class="product-name">${car.name}</h3><p style="color:#a0a0a0; font-size:0.875rem;">${car.year} • ${car.mileage.toLocaleString()} km</p><div class="product-price">₦${car.price.toLocaleString()}</div><div class="product-actions"><a href="car-details.html?id=${car.id}" class="btn btn-primary btn-sm">View Details</a></div></div>`;
+                    carsContainer.appendChild(card);
+                });
+            }
+            const propertiesContainer = document.getElementById('featured-properties');
+            if (propertiesContainer) {
+                Storage.get('properties').slice(0,4).forEach(prop => {
+                    const card = document.createElement('div'); card.className = 'product-card';
+                    card.innerHTML = `<img src="${prop.image}" alt="${prop.title}" class="product-image"><div class="product-info"><h3 class="product-name">${prop.title}</h3><p style="color:#a0a0a0; font-size:0.875rem;"><i class="fas fa-map-marker-alt"></i> ${prop.location}</p><div class="product-price">₦${prop.price.toLocaleString()}</div><div style="display:flex; gap:15px; margin:12px 0; font-size:0.875rem; color:#a0a0a0;"><span><i class="fas fa-bed"></i> ${prop.bedrooms}</span><span><i class="fas fa-bath"></i> ${prop.bathrooms}</span><span><i class="fas fa-ruler-combined"></i> ${prop.area}</span></div><div class="product-actions"><a href="property-details.html?id=${prop.id}" class="btn btn-primary btn-sm">View Details</a></div></div>`;
+                    propertiesContainer.appendChild(card);
+                });
+            }
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => { if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50); });
+            updateScrollPercentage();
+        });
+    </script>
+</body>
+
+</html>

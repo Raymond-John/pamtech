@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Pamtech Automobile</title>
+    <meta name="description" content="Your shopping cart at Pamtech Autoparts.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <span class="logo-text">Pam<span>tech</span></span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="fuel.html" class="nav-link">Oil & Gas</a></li>
+                <li><a href="cars.html" class="nav-link">Autoland</a></li>
+                <li><a href="autoparts.html" class="nav-link">Autoparts</a></li>
+                <li><a href="luxury-rides.html" class="nav-link">Luxury Ride</a></li>
+                <li><a href="properties.html" class="nav-link">Real Estate</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+                <a href="login.html" class="btn btn-primary btn-sm auth-link">
+                    <i class="fas fa-user"></i> Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Page -->
+    <div class="cart-page">
+        <div class="container">
+            <div class="cart-container">
+                <div class="cart-header">
+                    <h1><i class="fas fa-shopping-cart"></i> Shopping Cart</h1>
+                    <p>Review your items and proceed to checkout</p>
+                </div>
+                
+                <div id="cart-content">
+                    <!-- Cart content will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3>Checkout</h3>
+                <button class="modal-close" onclick="closeCheckoutModal()">&times;</button>
+            </div>
+            <div style="padding: 20px;">
+                <div id="checkout-step-1">
+                    <h4 style="margin-bottom: 20px;">Order Summary</h4>
+                    <div id="checkout-summary" style="background: var(--bg-dark-tertiary); border-radius: var(--radius-md); padding: 20px; margin-bottom: 20px;">
+                        <!-- Summary will be loaded here -->
+                    </div>
+                    
+                    <h4 style="margin-bottom: 20px;">Delivery Information</h4>
+                    <form id="checkout-form">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" id="checkout-name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" id="checkout-phone" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Delivery Address</label>
+                            <textarea id="checkout-address" class="form-textarea" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-credit-card"></i> Pay Now
+                        </button>
+                    </form>
+                </div>
+                
+                <div id="checkout-step-2" style="display: none; text-align: center;">
+                    <div class="spinner" style="margin: 0 auto 20px;"></div>
+                    <p>Processing payment...</p>
+                </div>
+                
+                <div id="checkout-step-3" style="display: none; text-align: center;">
+                    <div style="width: 80px; height: 80px; background: var(--accent-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <i class="fas fa-check" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h3 style="margin-bottom: 12px;">Order Placed Successfully!</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">Thank you for your purchase. Your order has been received.</p>
+                    <a href="autoparts.html" class="btn btn-primary">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pamtech Automobile. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+    
+    <!-- Cart Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCart();
+            
+            // Pre-fill checkout form if user is logged in
+            if (Pamtech.Auth.isLoggedIn()) {
+                const user = Pamtech.Auth.getCurrentUser();
+                document.getElementById('checkout-name').value = user.name || '';
+                document.getElementById('checkout-phone').value = user.phone || '';
+            }
+        });
+        
+        function loadCart() {
+            const cartItems = Pamtech.Cart.getItems();
+            const cartContent = document.getElementById('cart-content');
+            
+            if (cartItems.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>Your cart is empty</h3>
+                        <p>Looks like you haven't added any items yet.</p>
+                        <a href="autoparts.html" class="btn btn-primary">
+                            <i class="fas fa-arrow-left"></i> Continue Shopping
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            const subtotal = Pamtech.Cart.getTotal();
+            const shipping = subtotal > 50000 ? 0 : 3000;
+            const total = subtotal + shipping;
+            
+            cartContent.innerHTML = `
+                <div class="grid grid-2" style="gap: 30px;">
+                    <div class="cart-items">
+                        ${cartItems.map(item => `
+                            <div class="cart-item">
+                                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                                <div class="cart-item-details">
+                                    <h3>${item.name}</h3>
+                                    <p style="color: var(--text-muted); font-size: 0.875rem;">${item.category}</p>
+                                </div>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                                    <span class="quantity-value">${item.quantity}</span>
+                                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                                </div>
+                                <div class="cart-item-price">${Pamtech.Utils.formatCurrency(item.price * item.quantity)}</div>
+                                <button class="remove-btn" onclick="removeItem(${item.id})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="cart-summary">
+                        <h3 style="margin-bottom: 20px;">Order Summary</h3>
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span>${Pamtech.Utils.formatCurrency(subtotal)}</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span>${shipping === 0 ? 'FREE' : Pamtech.Utils.formatCurrency(shipping)}</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span>${Pamtech.Utils.formatCurrency(total)}</span>
+                        </div>
+                        <div class="cart-actions">
+                            <a href="autoparts.html" class="btn btn-secondary" style="flex: 1;">
+                                <i class="fas fa-arrow-left"></i> Continue
+                            </a>
+                            <button class="btn btn-primary" style="flex: 1;" onclick="openCheckout()">
+                                <i class="fas fa-credit-card"></i> Checkout
+                            </button>
+                        </div>
+                        <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(212, 175, 55, 0.1); text-align: center;">
+                            <p style="color: var(--text-muted); font-size: 0.875rem;">
+                                <i class="fas fa-shield-alt"></i> Secure checkout
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function updateQuantity(productId, quantity) {
+            Pamtech.Cart.updateQuantity(productId, quantity);
+            loadCart();
+        }
+        
+        function removeItem(productId) {
+            Pamtech.Cart.removeItem(productId);
+            loadCart();
+        }
+        
+        function openCheckout() {
+            const cartItems = Pamtech.Cart.getItems();
+            const subtotal = Pamtech.Cart.getTotal();
+            const shipping = subtotal > 50000 ? 0 : 3000;
+            const total = subtotal + shipping;
+            
+            document.getElementById('checkout-summary').innerHTML = `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="color: var(--text-muted);">Items:</span>
+                    <span>${cartItems.length}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="color: var(--text-muted);">Subtotal:</span>
+                    <span>${Pamtech.Utils.formatCurrency(subtotal)}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="color: var(--text-muted);">Shipping:</span>
+                    <span>${shipping === 0 ? 'FREE' : Pamtech.Utils.formatCurrency(shipping)}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding-top: 12px; border-top: 1px solid rgba(212, 175, 55, 0.2); margin-top: 12px;">
+                    <span style="font-weight: 600;">Total:</span>
+                    <span style="font-weight: 700; color: var(--primary-gold);">${Pamtech.Utils.formatCurrency(total)}</span>
+                </div>
+            `;
+            
+            document.getElementById('checkout-modal').classList.add('active');
+        }
+        
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').classList.remove('active');
+        }
+        
+        // Checkout form submission
+        document.getElementById('checkout-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show processing
+            document.getElementById('checkout-step-1').style.display = 'none';
+            document.getElementById('checkout-step-2').style.display = 'block';
+            
+            // Simulate payment processing
+            setTimeout(() => {
+                const result = Pamtech.Cart.checkout();
+                
+                if (result.success) {
+                    document.getElementById('checkout-step-2').style.display = 'none';
+                    document.getElementById('checkout-step-3').style.display = 'block';
+                    
+                    // Update cart display
+                    loadCart();
+                } else {
+                    Pamtech.showNotification(result.message, 'error');
+                    document.getElementById('checkout-step-2').style.display = 'none';
+                    document.getElementById('checkout-step-1').style.display = 'block';
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

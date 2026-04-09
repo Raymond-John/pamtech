@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel QR Code - Pamtech Automobile</title>
+    <meta name="description" content="Your fuel purchase QR code for redemption at Pamtech stations.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <span class="logo-text">Pam<span>tech</span></span>
+            </a>
+            
+            <div class="nav-actions">
+                <a href="dashboard.html" class="btn btn-primary btn-sm">
+                    <i class="fas fa-user"></i> Dashboard
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- QR Code Page -->
+    <div class="dashboard-page">
+        <div class="container">
+            <div class="qr-container" style="max-width: 500px; margin: 0 auto; background: var(--bg-card); border-radius: var(--radius-xl); padding: 40px;">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="width: 80px; height: 80px; background: var(--gradient-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <i class="fas fa-check" style="font-size: 2rem; color: var(--bg-dark);"></i>
+                    </div>
+                    <h1 style="margin-bottom: 8px;">Payment Successful!</h1>
+                    <p style="color: var(--text-muted);">Show this QR code at the fuel station</p>
+                </div>
+                
+                <div class="qr-code" id="qr-code-display" style="margin-bottom: 30px;">
+                    <!-- QR Code will be generated here -->
+                </div>
+                
+                <div class="qr-details">
+                    <div class="qr-details-row">
+                        <span style="color: var(--text-muted);">Transaction ID</span>
+                        <span id="tx-id" style="font-family: monospace;">-</span>
+                    </div>
+                    <div class="qr-details-row">
+                        <span style="color: var(--text-muted);">Fuel Type</span>
+                        <span id="tx-fuel" style="text-transform: uppercase;">-</span>
+                    </div>
+                    <div class="qr-details-row">
+                        <span style="color: var(--text-muted);">Quantity</span>
+                        <span id="tx-liters">-</span>
+                    </div>
+                    <div class="qr-details-row">
+                        <span style="color: var(--text-muted);">Amount Paid</span>
+                        <span id="tx-amount" style="color: var(--primary-gold); font-weight: 700;">-</span>
+                    </div>
+                    <div class="qr-details-row">
+                        <span style="color: var(--text-muted);">Status</span>
+                        <span id="tx-status" class="qr-status unused">UNUSED</span>
+                    </div>
+                    <div class="qr-details-row">
+                        <span style="color: var(--text-muted);">Purchase Date</span>
+                        <span id="tx-date">-</span>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 16px; margin-top: 30px;">
+                    <button onclick="window.print()" class="btn btn-secondary" style="flex: 1;">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                    <a href="fuel.html" class="btn btn-primary" style="flex: 1;">
+                        <i class="fas fa-plus"></i> Buy More
+                    </a>
+                </div>
+                
+                <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(212, 175, 55, 0.2); text-align: center;">
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 16px;">Need help? Contact us</p>
+                    <div style="display: flex; gap: 16px; justify-content: center;">
+                        <a href="https://wa.me/2348012345678" class="btn btn-dark btn-sm" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <a href="mailto:fuel@pamtech.com" class="btn btn-dark btn-sm">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pamtech Automobile. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+    
+ <!-- Include QRCode.js library in your HTML head -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Get transaction ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const transactionId = urlParams.get('id');
+    
+    if (!transactionId) {
+        Pamtech.showNotification('Invalid transaction', 'error');
+        setTimeout(() => { window.location.href = 'fuel.html'; }, 1500);
+        return;
+    }
+    
+    const transaction = Pamtech.FuelSystem.getTransaction(transactionId);
+    
+    if (!transaction) {
+        Pamtech.showNotification('Transaction not found', 'error');
+        setTimeout(() => { window.location.href = 'fuel.html'; }, 1500);
+        return;
+    }
+    
+    // Display transaction details
+    document.getElementById('tx-id').textContent = transaction.qrCode;
+    document.getElementById('tx-fuel').textContent = transaction.fuelType;
+    document.getElementById('tx-liters').textContent = transaction.liters + ' Liters';
+    document.getElementById('tx-amount').textContent = Pamtech.Utils.formatCurrency(transaction.total);
+    document.getElementById('tx-date').textContent = Pamtech.Utils.formatDate(transaction.createdAt);
+    
+    const statusEl = document.getElementById('tx-status');
+    statusEl.textContent = transaction.status;
+    statusEl.className = 'qr-status ' + transaction.status.toLowerCase();
+    
+    // Generate a real QR code
+    generateQRCode(transaction);
+});
+
+function generateQRCode(transaction) {
+    const container = document.getElementById('qr-code-display');
+    container.innerHTML = ''; // Clear old QR if any
+
+    // Prepare QR content: all transaction details
+    const qrData = JSON.stringify({
+        id: transaction.qrCode,
+        fuelType: transaction.fuelType,
+        liters: transaction.liters,
+        total: transaction.total,
+        status: transaction.status,
+        date: Pamtech.Utils.formatDate(transaction.createdAt)
+    });
+
+    // Generate real scannable QR code
+    new QRCode(container, {
+        text: qrData,
+        width: 200,
+        height: 200,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // Optional: show transaction ID below QR
+    const codeText = document.createElement('p');
+    codeText.style.cssText = `
+        margin-top: 15px;
+        font-family: monospace;
+        font-size: 14px;
+        color: #333;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-align: center;
+    `;
+    codeText.textContent = transaction.qrCode;
+    container.appendChild(codeText);
+}
+</script>
+</body>
+</html>

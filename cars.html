@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoland - Pamtech Automobile</title>
+    <meta name="description" content="Explore our collection of premium vehicles for sale at Pamtech Autoland.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <span class="logo-text">Pam<span>tech</span></span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="fuel.html" class="nav-link">Oil & Gas</a></li>
+                <li><a href="cars.html" class="nav-link active">Autoland</a></li>
+                <li><a href="autoparts.html" class="nav-link">Autoparts</a></li>
+                <li><a href="luxury-rides.html" class="nav-link">Luxury Ride</a></li>
+                <li><a href="properties.html" class="nav-link">Real Estate</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+                <a href="login.html" class="btn btn-primary btn-sm auth-link">
+                    <i class="fas fa-user"></i> Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cars Page -->
+    <div class="dashboard-page">
+        <div class="dashboard-header">
+            <div class="container">
+                <h1><i class="fas fa-car-side"></i> Autoland</h1>
+                <p>Explore our collection of premium vehicles for sale</p>
+            </div>
+        </div>
+        
+        <div class="container">
+            <!-- Search and Filter -->
+            <div class="products-header">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search cars...">
+                </div>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <select id="year-filter" class="filter-select">
+                        <option value="">All Years</option>
+                        <option value="2021">2021 & Newer</option>
+                        <option value="2019">2019 & Newer</option>
+                        <option value="2017">2017 & Newer</option>
+                        <option value="2015">2015 & Newer</option>
+                    </select>
+                    <select id="price-filter" class="filter-select">
+                        <option value="">All Prices</option>
+                        <option value="0-20000000">Under ₦20M</option>
+                        <option value="20000000-50000000">₦20M - ₦50M</option>
+                        <option value="50000000+">Above ₦50M</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Cars Grid -->
+            <div class="products-grid" id="cars-grid">
+                <!-- Cars will be loaded dynamically -->
+            </div>
+            
+            <!-- No Results -->
+            <div id="no-results" style="display: none; text-align: center; padding: 60px 20px;">
+                <i class="fas fa-car" style="font-size: 4rem; color: var(--primary-gold); opacity: 0.5; margin-bottom: 20px;"></i>
+                <h3>No cars found</h3>
+                <p style="color: var(--text-muted);">Try adjusting your search or filter</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pamtech Automobile. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+    
+    <!-- Cars Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCars();
+            
+            // Search functionality
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', Pamtech.Utils.debounce(() => {
+                loadCars();
+            }, 300));
+            
+            // Filter handlers
+            document.getElementById('year-filter').addEventListener('change', loadCars);
+            document.getElementById('price-filter').addEventListener('change', loadCars);
+        });
+        
+        function loadCars() {
+            const searchQuery = document.getElementById('search-input').value;
+            const yearFilter = document.getElementById('year-filter').value;
+            const priceFilter = document.getElementById('price-filter').value;
+            
+            let cars = Pamtech.Cars.getAll();
+            
+            // Apply search
+            if (searchQuery) {
+                cars = cars.filter(c => 
+                    c.name.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+            }
+            
+            // Apply year filter
+            if (yearFilter) {
+                cars = cars.filter(c => c.year >= parseInt(yearFilter));
+            }
+            
+            // Apply price filter
+            if (priceFilter) {
+                if (priceFilter === '0-20000000') {
+                    cars = cars.filter(c => c.price < 20000000);
+                } else if (priceFilter === '20000000-50000000') {
+                    cars = cars.filter(c => c.price >= 20000000 && c.price <= 50000000);
+                } else if (priceFilter === '50000000+') {
+                    cars = cars.filter(c => c.price > 50000000);
+                }
+            }
+            
+            const carsGrid = document.getElementById('cars-grid');
+            const noResults = document.getElementById('no-results');
+            
+            if (cars.length === 0) {
+                carsGrid.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            
+            carsGrid.innerHTML = cars.map(car => `
+                <div class="product-card">
+                    <img src="${car.image}" alt="${car.name}" class="product-image" style="height: 220px;">
+                    <div class="product-info">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                            <h3 class="product-name">${car.name}</h3>
+                            <span class="badge badge-gold">${car.year}</span>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 12px;">
+                            <i class="fas fa-tachometer-alt"></i> ${car.mileage.toLocaleString()} km • 
+                            <i class="fas fa-gas-pump"></i> ${car.fuel} • 
+                            <i class="fas fa-cog"></i> ${car.transmission}
+                        </p>
+                        <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+                            ${car.features.slice(0, 3).map(f => `<span style="font-size: 0.75rem; background: rgba(212, 175, 55, 0.1); color: var(--primary-gold); padding: 4px 8px; border-radius: 4px;">${f}</span>`).join('')}
+                        </div>
+                        <div class="product-price">${Pamtech.Utils.formatCurrency(car.price)}</div>
+                        <div class="product-actions">
+                            <a href="car-details.html?id=${car.id}" class="btn btn-primary btn-sm" style="flex: 1;">
+                                <i class="fas fa-eye"></i> View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>

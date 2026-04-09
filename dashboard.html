@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Pamtech Automobile</title>
+    <meta name="description" content="Your Pamtech Automobile account dashboard.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <span class="logo-text">Pam<span>tech</span></span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="fuel.html" class="nav-link">Oil & Gas</a></li>
+                <li><a href="cars.html" class="nav-link">Autoland</a></li>
+                <li><a href="autoparts.html" class="nav-link">Autoparts</a></li>
+                <li><a href="luxury-rides.html" class="nav-link">Luxury Ride</a></li>
+                <li><a href="properties.html" class="nav-link">Real Estate</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+                <a href="dashboard.html" class="btn btn-primary btn-sm">
+                    <i class="fas fa-user"></i> Dashboard
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Page -->
+    <div class="dashboard-page">
+        <div class="dashboard-header">
+            <div class="container">
+                <h1>My Dashboard</h1>
+                <p>Welcome back, <span id="user-name">User</span>!</p>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="dashboard-grid">
+                <!-- Sidebar -->
+                <aside class="dashboard-sidebar">
+                    <nav class="sidebar-menu">
+                        <a href="#overview" class="sidebar-link active" data-tab="overview">
+                            <i class="fas fa-home"></i> Overview
+                        </a>
+                        <a href="#profile" class="sidebar-link" data-tab="profile">
+                            <i class="fas fa-user"></i> Profile
+                        </a>
+                        <a href="#orders" class="sidebar-link" data-tab="orders">
+                            <i class="fas fa-shopping-bag"></i> My Orders
+                        </a>
+                        <a href="#bookings" class="sidebar-link" data-tab="bookings">
+                            <i class="fas fa-calendar"></i> My Bookings
+                        </a>
+                        <a href="#fuel" class="sidebar-link" data-tab="fuel">
+                            <i class="fas fa-gas-pump"></i> Fuel History
+                        </a>
+                        <a href="#" id="logout-btn" class="sidebar-link" style="color: var(--accent-red);">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </nav>
+                </aside>
+                
+                <!-- Main Content -->
+                <main class="dashboard-content">
+                    <!-- Overview Tab -->
+                    <div id="overview-tab" class="tab-content active">
+                        <h2 style="margin-bottom: 24px;">Overview</h2>
+                        
+                        <div class="dashboard-stats">
+                            <div class="stat-card">
+                                <div class="stat-card-icon">
+                                    <i class="fas fa-shopping-bag"></i>
+                                </div>
+                                <div class="stat-card-value" id="total-orders">0</div>
+                                <div class="stat-card-label">Total Orders</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <div class="stat-card-value" id="total-bookings">0</div>
+                                <div class="stat-card-label">Total Bookings</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon">
+                                    <i class="fas fa-gas-pump"></i>
+                                </div>
+                                <div class="stat-card-value" id="total-fuel">0</div>
+                                <div class="stat-card-label">Fuel Purchases</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon">
+                                    <i class="fas fa-wallet"></i>
+                                </div>
+                                <div class="stat-card-value" id="total-spent">₦0</div>
+                                <div class="stat-card-label">Total Spent</div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="margin: 30px 0 20px;">Recent Activity</h3>
+                        <div id="recent-activity" style="background: var(--bg-dark-tertiary); border-radius: var(--radius-md); padding: 20px;">
+                            <p style="color: var(--text-muted); text-align: center;">No recent activity</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Profile Tab -->
+                    <div id="profile-tab" class="tab-content" style="display: none;">
+                        <h2 style="margin-bottom: 24px;">My Profile</h2>
+                        
+                        <form id="profile-form">
+                            <div class="grid grid-2" style="gap: 20px;">
+                                <div class="form-group">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" id="profile-name" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" id="profile-email" class="form-input" readonly style="opacity: 0.7;">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" id="profile-phone" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Address</label>
+                                <textarea id="profile-address" class="form-textarea" placeholder="Enter your address"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Orders Tab -->
+                    <div id="orders-tab" class="tab-content" style="display: none;">
+                        <h2 style="margin-bottom: 24px;">My Orders</h2>
+                        
+                        <div id="orders-list">
+                            <p style="color: var(--text-muted); text-align: center; padding: 40px;">No orders yet</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Bookings Tab -->
+                    <div id="bookings-tab" class="tab-content" style="display: none;">
+                        <h2 style="margin-bottom: 24px;">My Bookings</h2>
+                        
+                        <div id="bookings-list">
+                            <p style="color: var(--text-muted); text-align: center; padding: 40px;">No bookings yet</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Fuel Tab -->
+                    <div id="fuel-tab" class="tab-content" style="display: none;">
+                        <h2 style="margin-bottom: 24px;">Fuel Purchase History</h2>
+                        
+                        <div id="fuel-list">
+                            <p style="color: var(--text-muted); text-align: center; padding: 40px;">No fuel purchases yet</p>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pamtech Automobile. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+    
+    <!-- Dashboard Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check authentication
+            if (!Pamtech.Auth.isLoggedIn()) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const currentUser = Pamtech.Auth.getCurrentUser();
+            document.getElementById('user-name').textContent = currentUser.name;
+            
+            // Load profile data
+            document.getElementById('profile-name').value = currentUser.name || '';
+            document.getElementById('profile-email').value = currentUser.email || '';
+            document.getElementById('profile-phone').value = currentUser.phone || '';
+            document.getElementById('profile-address').value = currentUser.address || '';
+            
+            // Tab switching
+            const sidebarLinks = document.querySelectorAll('.sidebar-link[data-tab]');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    const tabId = link.dataset.tab;
+                    
+                    // Update active states
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                    
+                    tabContents.forEach(content => {
+                        content.style.display = 'none';
+                        content.classList.remove('active');
+                    });
+                    
+                    const activeTab = document.getElementById(`${tabId}-tab`);
+                    if (activeTab) {
+                        activeTab.style.display = 'block';
+                        activeTab.classList.add('active');
+                    }
+                });
+            });
+            
+            // Load dashboard stats
+            loadDashboardStats();
+            
+            // Load orders
+            loadOrders();
+            
+            // Load bookings
+            loadBookings();
+            
+            // Load fuel history
+            loadFuelHistory();
+            
+            // Profile form submission
+            document.getElementById('profile-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const updates = {
+                    name: document.getElementById('profile-name').value,
+                    phone: document.getElementById('profile-phone').value,
+                    address: document.getElementById('profile-address').value
+                };
+                
+                const result = Pamtech.Auth.updateProfile(updates);
+                
+                if (result.success) {
+                    Pamtech.showNotification(result.message, 'success');
+                    document.getElementById('user-name').textContent = updates.name;
+                } else {
+                    Pamtech.showNotification(result.message, 'error');
+                }
+            });
+            
+            // Logout
+            document.getElementById('logout-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                Pamtech.Auth.logout();
+            });
+        });
+        
+        function loadDashboardStats() {
+            const currentUser = Pamtech.Auth.getCurrentUser();
+            const userId = currentUser.id;
+            
+            // Get orders
+            const orders = (Pamtech.Storage.get('orders') || []).filter(o => o.userId === userId);
+            document.getElementById('total-orders').textContent = orders.length;
+            
+            // Get bookings
+            const bookings = (Pamtech.Storage.get('bookings') || []).filter(b => b.userId === userId);
+            document.getElementById('total-bookings').textContent = bookings.length;
+            
+            // Get fuel transactions
+            const fuelTransactions = (Pamtech.Storage.get('fuelTransactions') || []).filter(f => f.userId === userId);
+            document.getElementById('total-fuel').textContent = fuelTransactions.length;
+            
+            // Calculate total spent
+            let totalSpent = 0;
+            orders.forEach(o => totalSpent += o.total);
+            bookings.forEach(b => totalSpent += b.totalAmount);
+            fuelTransactions.forEach(f => totalSpent += f.total);
+            document.getElementById('total-spent').textContent = Pamtech.Utils.formatCurrency(totalSpent);
+        }
+        
+        function loadOrders() {
+            const currentUser = Pamtech.Auth.getCurrentUser();
+            const orders = (Pamtech.Storage.get('orders') || [])
+                .filter(o => o.userId === currentUser.id)
+                .sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            const ordersList = document.getElementById('orders-list');
+            
+            if (orders.length === 0) {
+                ordersList.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 40px;">No orders yet</p>';
+                return;
+            }
+            
+            ordersList.innerHTML = orders.map(order => `
+                <div style="background: var(--bg-dark-tertiary); border-radius: var(--radius-md); padding: 20px; margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <span style="font-weight: 600;">Order #${order.id.toString().slice(-6)}</span>
+                        <span class="badge ${order.status === 'Delivered' ? 'badge-success' : 'badge-gold'}">${order.status}</span>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 8px;">
+                        <i class="fas fa-calendar"></i> ${Pamtech.Utils.formatDate(order.date)}
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 12px;">
+                        ${order.items.length} item(s)
+                    </p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 1.25rem; font-weight: 700; color: var(--primary-gold);">
+                            ${Pamtech.Utils.formatCurrency(order.total)}
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function loadBookings() {
+            const currentUser = Pamtech.Auth.getCurrentUser();
+            const bookings = (Pamtech.Storage.get('bookings') || [])
+                .filter(b => b.userId === currentUser.id)
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            
+            const bookingsList = document.getElementById('bookings-list');
+            
+            if (bookings.length === 0) {
+                bookingsList.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 40px;">No bookings yet</p>';
+                return;
+            }
+            
+            bookingsList.innerHTML = bookings.map(booking => `
+                <div style="background: var(--bg-dark-tertiary); border-radius: var(--radius-md); padding: 20px; margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <span style="font-weight: 600;">${booking.vehicleName}</span>
+                        <span class="badge ${booking.status === 'Confirmed' ? 'badge-success' : 'badge-gold'}">${booking.status}</span>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 8px;">
+                        <i class="fas fa-calendar"></i> ${Pamtech.Utils.formatDate(booking.createdAt)}
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 8px;">
+                        <i class="fas fa-clock"></i> ${booking.duration} day(s)
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 12px;">
+                        <i class="fas fa-map-marker-alt"></i> ${booking.pickupLocation}
+                    </p>
+                    <div style="font-size: 1.25rem; font-weight: 700; color: var(--primary-gold);">
+                        ${Pamtech.Utils.formatCurrency(booking.totalAmount)}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function loadFuelHistory() {
+            const currentUser = Pamtech.Auth.getCurrentUser();
+            const transactions = (Pamtech.Storage.get('fuelTransactions') || [])
+                .filter(f => f.userId === currentUser.id)
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            
+            const fuelList = document.getElementById('fuel-list');
+            
+            if (transactions.length === 0) {
+                fuelList.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 40px;">No fuel purchases yet</p>';
+                return;
+            }
+            
+            fuelList.innerHTML = transactions.map(tx => `
+                <div style="background: var(--bg-dark-tertiary); border-radius: var(--radius-md); padding: 20px; margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <span style="font-weight: 600; text-transform: uppercase;">${tx.fuelType}</span>
+                        <span class="qr-status ${tx.status.toLowerCase()}">${tx.status}</span>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 8px;">
+                        <i class="fas fa-calendar"></i> ${Pamtech.Utils.formatDate(tx.createdAt)}
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 8px;">
+                        <i class="fas fa-tint"></i> ${tx.liters} Liters
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 12px; font-family: monospace;">
+                        <i class="fas fa-qrcode"></i> ${tx.qrCode}
+                    </p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 1.25rem; font-weight: 700; color: var(--primary-gold);">
+                            ${Pamtech.Utils.formatCurrency(tx.total)}
+                        </span>
+                        <a href="fuel-qr.html?id=${tx.id}" class="btn btn-sm btn-secondary">View QR</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>

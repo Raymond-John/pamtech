@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Ride - Pamtech Automobile</title>
+    <meta name="description" content="Rent premium vehicles for special occasions or business trips at Pamtech Luxury Ride.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <span class="logo-text">Pam<span>tech</span></span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="fuel.html" class="nav-link">Oil & Gas</a></li>
+                <li><a href="cars.html" class="nav-link">Autoland</a></li>
+                <li><a href="autoparts.html" class="nav-link">Autoparts</a></li>
+                <li><a href="luxury-rides.html" class="nav-link active">Luxury Ride</a></li>
+                <li><a href="properties.html" class="nav-link">Real Estate</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+                <a href="login.html" class="btn btn-primary btn-sm auth-link">
+                    <i class="fas fa-user"></i> Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Luxury Rides Page -->
+    <div class="dashboard-page">
+        <div class="dashboard-header">
+            <div class="container">
+                <h1><i class="fas fa-taxi"></i> Luxury Ride</h1>
+                <p>Rent premium vehicles for special occasions or business trips</p>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="grid grid-2" style="gap: 40px;">
+                <!-- Vehicle Selection -->
+                <div>
+                    <h2 style="margin-bottom: 24px;">Select Vehicle</h2>
+                    <div class="vehicle-selection" id="vehicle-selection">
+                        <!-- Vehicles will be loaded dynamically -->
+                    </div>
+                    
+                    <div style="background: var(--bg-card); border-radius: var(--radius-lg); padding: 24px; margin-top: 30px;">
+                        <h3 style="margin-bottom: 16px; color: var(--primary-gold);"><i class="fas fa-info-circle"></i> Rental Information</h3>
+                        <ul style="color: var(--text-muted); padding-left: 20px; line-height: 1.8;">
+                            <li>Minimum rental period: 1 day</li>
+                            <li>Driver available on request</li>
+                            <li>Fuel not included in rental price</li>
+                            <li>Security deposit required</li>
+                            <li>Valid driver's license required</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Booking Form -->
+                <div class="booking-form">
+                    <h2 style="margin-bottom: 24px; text-align: center;">Book Your Ride</h2>
+                    
+                    <form id="booking-form">
+                        <input type="hidden" id="selected-vehicle" required>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Selected Vehicle</label>
+                            <input type="text" id="display-vehicle" class="form-input" readonly placeholder="Select a vehicle from the left" style="background: var(--bg-dark-tertiary); opacity: 0.7;">
+                        </div>
+                        
+                        <div class="grid grid-2" style="gap: 16px;">
+                            <div class="form-group">
+                                <label class="form-label">Pickup Date</label>
+                                <input type="date" id="pickup-date" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Return Date</label>
+                                <input type="date" id="return-date" class="form-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Duration</label>
+                            <input type="text" id="duration-display" class="form-input" readonly value="0 days" style="background: var(--bg-dark-tertiary); opacity: 0.7;">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Pickup Location</label>
+                            <input type="text" id="pickup-location" class="form-input" placeholder="Enter pickup address" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" id="customer-name" class="form-input" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" id="customer-phone" class="form-input" placeholder="08012345678" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Special Requests (Optional)</label>
+                            <textarea id="special-requests" class="form-textarea" rows="3" placeholder="Any special requirements..."></textarea>
+                        </div>
+                        
+                        <div class="fuel-summary" style="margin-bottom: 24px;">
+                            <div class="fuel-summary-row">
+                                <span>Daily Rate</span>
+                                <span id="summary-rate">₦0</span>
+                            </div>
+                            <div class="fuel-summary-row">
+                                <span>Duration</span>
+                                <span id="summary-duration">0 days</span>
+                            </div>
+                            <div class="fuel-summary-row total">
+                                <span>Total Amount</span>
+                                <span id="summary-total">₦0</span>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-calendar-check"></i> Book Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="booking-modal">
+        <div class="modal" style="max-width: 400px;">
+            <div class="modal-header">
+                <h3>Processing Booking</h3>
+            </div>
+            <div style="text-align: center; padding: 40px 20px;">
+                <div class="spinner" style="margin: 0 auto 20px;"></div>
+                <p>Please wait while we process your booking...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal" style="max-width: 400px; text-align: center;">
+            <div style="padding: 40px;">
+                <div style="width: 80px; height: 80px; background: var(--accent-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                    <i class="fas fa-check" style="font-size: 2rem; color: white;"></i>
+                </div>
+                <h3 style="margin-bottom: 12px;">Booking Confirmed!</h3>
+                <p style="color: var(--text-muted); margin-bottom: 24px;">Your luxury ride has been booked. We will contact you shortly to confirm.</p>
+                <a href="dashboard.html" class="btn btn-primary">View My Bookings</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pamtech Automobile. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+    
+    <!-- Luxury Rides Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let selectedVehicle = null;
+            const vehicles = Pamtech.LuxuryVehicles.getAll();
+            
+            // Load vehicles
+            const vehicleSelection = document.getElementById('vehicle-selection');
+            vehicleSelection.innerHTML = vehicles.map(v => `
+                <label class="vehicle-option">
+                    <input type="radio" name="vehicle" value="${v.id}" data-price="${v.pricePerDay}" data-name="${v.name}">
+                    <div class="vehicle-card">
+                        <img src="${v.image}" alt="${v.name}">
+                        <h4>${v.name}</h4>
+                        <p>${Pamtech.Utils.formatCurrency(v.pricePerDay)}/day</p>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fas fa-user"></i> ${v.seats} seats</span>
+                    </div>
+                </label>
+            `).join('');
+            
+            // Vehicle selection
+            const vehicleInputs = document.querySelectorAll('input[name="vehicle"]');
+            vehicleInputs.forEach(input => {
+                input.addEventListener('change', () => {
+                    selectedVehicle = {
+                        id: parseInt(input.value),
+                        name: input.dataset.name,
+                        pricePerDay: parseInt(input.dataset.price)
+                    };
+                    document.getElementById('selected-vehicle').value = input.value;
+                    document.getElementById('display-vehicle').value = input.dataset.name;
+                    updateBookingSummary();
+                });
+            });
+            
+            // Date change handlers
+            const pickupDate = document.getElementById('pickup-date');
+            const returnDate = document.getElementById('return-date');
+            
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            pickupDate.min = today;
+            returnDate.min = today;
+            
+            pickupDate.addEventListener('change', () => {
+                returnDate.min = pickupDate.value;
+                updateDuration();
+            });
+            
+            returnDate.addEventListener('change', () => {
+                updateDuration();
+            });
+            
+            function updateDuration() {
+                if (pickupDate.value && returnDate.value) {
+                    const start = new Date(pickupDate.value);
+                    const end = new Date(returnDate.value);
+                    const diffTime = end - start;
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+                    
+                    if (diffDays > 0) {
+                        document.getElementById('duration-display').value = diffDays + ' days';
+                    } else {
+                        document.getElementById('duration-display').value = 'Invalid dates';
+                    }
+                }
+                updateBookingSummary();
+            }
+            
+            function updateBookingSummary() {
+                if (!selectedVehicle) {
+                    document.getElementById('summary-rate').textContent = '₦0';
+                    document.getElementById('summary-duration').textContent = '0 days';
+                    document.getElementById('summary-total').textContent = '₦0';
+                    return;
+                }
+                
+                const durationText = document.getElementById('duration-display').value;
+                const duration = parseInt(durationText) || 0;
+                const total = selectedVehicle.pricePerDay * duration;
+                
+                document.getElementById('summary-rate').textContent = Pamtech.Utils.formatCurrency(selectedVehicle.pricePerDay);
+                document.getElementById('summary-duration').textContent = duration + ' days';
+                document.getElementById('summary-total').textContent = Pamtech.Utils.formatCurrency(total);
+            }
+            
+            // Pre-fill user info if logged in
+            if (Pamtech.Auth.isLoggedIn()) {
+                const user = Pamtech.Auth.getCurrentUser();
+                document.getElementById('customer-name').value = user.name || '';
+                document.getElementById('customer-phone').value = user.phone || '';
+            }
+            
+            // Form submission
+            document.getElementById('booking-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                if (!selectedVehicle) {
+                    Pamtech.showNotification('Please select a vehicle', 'error');
+                    return;
+                }
+                
+                const durationText = document.getElementById('duration-display').value;
+                const duration = parseInt(durationText) || 0;
+                
+                if (duration <= 0) {
+                    Pamtech.showNotification('Please select valid dates', 'error');
+                    return;
+                }
+                
+                const bookingData = {
+                    vehicleId: selectedVehicle.id,
+                    vehicleName: selectedVehicle.name,
+                    pickupDate: pickupDate.value,
+                    returnDate: returnDate.value,
+                    duration: duration,
+                    pickupLocation: document.getElementById('pickup-location').value,
+                    customerName: document.getElementById('customer-name').value,
+                    customerPhone: document.getElementById('customer-phone').value,
+                    specialRequests: document.getElementById('special-requests').value,
+                    totalAmount: selectedVehicle.pricePerDay * duration
+                };
+                
+                // Show processing modal
+                document.getElementById('booking-modal').classList.add('active');
+                
+                // Simulate processing
+                setTimeout(() => {
+                    const result = Pamtech.Bookings.create(bookingData);
+                    
+                    if (result.success) {
+                        document.getElementById('booking-modal').classList.remove('active');
+                        document.getElementById('success-modal').classList.add('active');
+                    } else {
+                        document.getElementById('booking-modal').classList.remove('active');
+                        Pamtech.showNotification(result.message, 'error');
+                    }
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

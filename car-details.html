@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details - Pamtech Automobile</title>
+    <meta name="description" content="View detailed information about this vehicle at Pamtech Autoland.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <span class="logo-text">Pam<span>tech</span></span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="fuel.html" class="nav-link">Oil & Gas</a></li>
+                <li><a href="cars.html" class="nav-link active">Autoland</a></li>
+                <li><a href="autoparts.html" class="nav-link">Autoparts</a></li>
+                <li><a href="luxury-rides.html" class="nav-link">Luxury Ride</a></li>
+                <li><a href="properties.html" class="nav-link">Real Estate</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+                <a href="login.html" class="btn btn-primary btn-sm auth-link">
+                    <i class="fas fa-user"></i> Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Car Details Page -->
+    <div class="dashboard-page">
+        <div class="container">
+            <div style="margin-bottom: 30px;">
+                <a href="cars.html" class="btn btn-dark btn-sm">
+                    <i class="fas fa-arrow-left"></i> Back to Cars
+                </a>
+            </div>
+            
+            <div id="car-details">
+                <!-- Car details will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contact-modal">
+        <div class="modal" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3>Contact Us About This Car</h3>
+                <button class="modal-close" onclick="closeContactModal()">&times;</button>
+            </div>
+            <div style="padding: 20px;">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label class="form-label">Your Name</label>
+                        <input type="text" id="contact-name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" id="contact-phone" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" id="contact-email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea id="contact-message" class="form-textarea" rows="4" placeholder="I'm interested in this car..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i> Send Inquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal" style="max-width: 400px; text-align: center;">
+            <div style="padding: 40px;">
+                <div style="width: 80px; height: 80px; background: var(--accent-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                    <i class="fas fa-check" style="font-size: 2rem; color: white;"></i>
+                </div>
+                <h3 style="margin-bottom: 12px;">Inquiry Sent!</h3>
+                <p style="color: var(--text-muted); margin-bottom: 24px;">We will contact you shortly about this vehicle.</p>
+                <button onclick="closeSuccessModal()" class="btn btn-primary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pamtech Automobile. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+    
+    <!-- Car Details Script -->
+    <script>
+        let currentCar = null;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get car ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const carId = urlParams.get('id');
+            
+            if (!carId) {
+                window.location.href = 'cars.html';
+                return;
+            }
+            
+            currentCar = Pamtech.Cars.getById(parseInt(carId));
+            
+            if (!currentCar) {
+                window.location.href = 'cars.html';
+                return;
+            }
+            
+            // Load car details
+            loadCarDetails();
+            
+            // Pre-fill contact form if user is logged in
+            if (Pamtech.Auth.isLoggedIn()) {
+                const user = Pamtech.Auth.getCurrentUser();
+                document.getElementById('contact-name').value = user.name || '';
+            }
+        });
+        
+        function loadCarDetails() {
+            const carDetails = document.getElementById('car-details');
+            
+            carDetails.innerHTML = `
+                <div class="grid grid-2" style="gap: 40px;">
+                    <div>
+                        <img src="${currentCar.image}" alt="${currentCar.name}" style="width: 100%; border-radius: var(--radius-lg); margin-bottom: 20px;">
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                            <div style="background: var(--bg-card); padding: 16px; border-radius: var(--radius-md); text-align: center;">
+                                <i class="fas fa-calendar" style="color: var(--primary-gold); font-size: 1.5rem; margin-bottom: 8px;"></i>
+                                <p style="color: var(--text-muted); font-size: 0.75rem;">Year</p>
+                                <p style="font-weight: 600;">${currentCar.year}</p>
+                            </div>
+                            <div style="background: var(--bg-card); padding: 16px; border-radius: var(--radius-md); text-align: center;">
+                                <i class="fas fa-tachometer-alt" style="color: var(--primary-gold); font-size: 1.5rem; margin-bottom: 8px;"></i>
+                                <p style="color: var(--text-muted); font-size: 0.75rem;">Mileage</p>
+                                <p style="font-weight: 600;">${currentCar.mileage.toLocaleString()} km</p>
+                            </div>
+                            <div style="background: var(--bg-card); padding: 16px; border-radius: var(--radius-md); text-align: center;">
+                                <i class="fas fa-palette" style="color: var(--primary-gold); font-size: 1.5rem; margin-bottom: 8px;"></i>
+                                <p style="color: var(--text-muted); font-size: 0.75rem;">Color</p>
+                                <p style="font-weight: 600;">${currentCar.color}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                            <div>
+                                <h1 style="margin-bottom: 8px;">${currentCar.name}</h1>
+                                <p style="color: var(--text-muted);">
+                                    <i class="fas fa-gas-pump"></i> ${currentCar.fuel} • 
+                                    <i class="fas fa-cog"></i> ${currentCar.transmission}
+                                </p>
+                            </div>
+                            <div class="product-price" style="font-size: 2rem; margin: 0;">${Pamtech.Utils.formatCurrency(currentCar.price)}</div>
+                        </div>
+                        
+                        <div style="background: var(--bg-card); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px;">
+                            <h3 style="margin-bottom: 16px;">Description</h3>
+                            <p style="color: var(--text-muted); line-height: 1.8;">${currentCar.description}</p>
+                        </div>
+                        
+                        <div style="background: var(--bg-card); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px;">
+                            <h3 style="margin-bottom: 16px;">Features</h3>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+                                ${currentCar.features.map(f => `
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <i class="fas fa-check-circle" style="color: var(--accent-green);"></i>
+                                        <span>${f}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 16px;">
+                            <button onclick="openContactModal()" class="btn btn-primary btn-lg" style="flex: 1;">
+                                <i class="fas fa-phone"></i> Contact Us
+                            </button>
+                            <a href="https://wa.me/2348012345678?text=I'm interested in the ${encodeURIComponent(currentCar.name)}" class="btn btn-success btn-lg" target="_blank" style="flex: 1;">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                        
+                        <div style="margin-top: 24px; padding: 16px; background: rgba(212, 175, 55, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(212, 175, 55, 0.2);">
+                            <p style="color: var(--text-muted); font-size: 0.875rem;">
+                                <i class="fas fa-info-circle" style="color: var(--primary-gold);"></i> 
+                                This vehicle is available for viewing. Contact us to schedule a test drive.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function openContactModal() {
+            document.getElementById('contact-modal').classList.add('active');
+        }
+        
+        function closeContactModal() {
+            document.getElementById('contact-modal').classList.remove('active');
+        }
+        
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.remove('active');
+        }
+        
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Close contact modal
+            closeContactModal();
+            
+            // Show success modal
+            document.getElementById('success-modal').classList.add('active');
+            
+            // Reset form
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>

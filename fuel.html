@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oil & Gas - Pamtech Automobile</title>
+    <meta name="description" content="Purchase fuel with digital payment and QR code verification at Pamtech Automobile.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <span class="logo-text">Pam<span>tech</span></span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="fuel.html" class="nav-link active">Oil & Gas</a></li>
+                <li><a href="cars.html" class="nav-link">Autoland</a></li>
+                <li><a href="autoparts.html" class="nav-link">Autoparts</a></li>
+                <li><a href="luxury-rides.html" class="nav-link">Luxury Ride</a></li>
+                <li><a href="properties.html" class="nav-link">Real Estate</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+                <a href="login.html" class="btn btn-primary btn-sm auth-link">
+                    <i class="fas fa-user"></i> Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Fuel Page -->
+    <div class="dashboard-page">
+        <div class="dashboard-header">
+            <div class="container">
+                <h1><i class="fas fa-gas-pump"></i> Oil & Gas</h1>
+                <p>Purchase fuel with digital payment and QR code verification</p>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="grid grid-2" style="gap: 40px;">
+                <!-- Fuel Purchase Form -->
+                <div class="fuel-section">
+                    <h2 style="margin-bottom: 30px; text-align: center;">Purchase Fuel</h2>
+                    
+                    <form id="fuel-form">
+                        <div style="margin-bottom: 24px;">
+                            <label class="form-label">Select Fuel Type</label>
+                            <div class="fuel-types">
+                                <div class="fuel-type active" data-fuel="petrol">
+                                    <i class="fas fa-gas-pump"></i>
+                                    <h4>Petrol</h4>
+                                    <p>₦650/Liter</p>
+                                </div>
+                                <div class="fuel-type" data-fuel="diesel">
+                                    <i class="fas fa-truck"></i>
+                                    <h4>Diesel</h4>
+                                    <p>₦750/Liter</p>
+                                </div>
+                                <div class="fuel-type" data-fuel="kerosene">
+                                    <i class="fas fa-fire"></i>
+                                    <h4>Kerosene</h4>
+                                    <p>₦550/Liter</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="fuel-amount">
+                            <label class="form-label">Amount in Liters</label>
+                            <div class="amount-input">
+                                <span><i class="fas fa-tint"></i></span>
+                                <input type="number" id="fuel-liters" min="1" value="10" required>
+                            </div>
+                        </div>
+                        
+                        <div class="fuel-summary">
+                            <div class="fuel-summary-row">
+                                <span>Fuel Type</span>
+                                <span id="summary-type" style="text-transform: uppercase;">PETROL</span>
+                            </div>
+                            <div class="fuel-summary-row">
+                                <span>Price per Liter</span>
+                                <span id="summary-price">₦650</span>
+                            </div>
+                            <div class="fuel-summary-row">
+                                <span>Quantity</span>
+                                <span id="summary-liters">10 Liters</span>
+                            </div>
+                            <div class="fuel-summary-row total">
+                                <span>Total Amount</span>
+                                <span id="summary-total">₦6,500</span>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-credit-card"></i> Proceed to Payment
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- How It Works -->
+                <div>
+                    <h2 style="margin-bottom: 30px;">How It Works</h2>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 24px;">
+                        <div style="display: flex; gap: 20px; align-items: flex-start;">
+                            <div style="width: 50px; height: 50px; background: var(--gradient-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--bg-dark); font-weight: 700; flex-shrink: 0;">1</div>
+                            <div>
+                                <h3 style="margin-bottom: 8px;">Select Fuel Type</h3>
+                                <p style="color: var(--text-muted);">Choose from Petrol, Diesel, or Kerosene based on your vehicle needs.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 20px; align-items: flex-start;">
+                            <div style="width: 50px; height: 50px; background: var(--gradient-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--bg-dark); font-weight: 700; flex-shrink: 0;">2</div>
+                            <div>
+                                <h3 style="margin-bottom: 8px;">Enter Amount</h3>
+                                <p style="color: var(--text-muted);">Specify the number of liters you want to purchase.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 20px; align-items: flex-start;">
+                            <div style="width: 50px; height: 50px; background: var(--gradient-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--bg-dark); font-weight: 700; flex-shrink: 0;">3</div>
+                            <div>
+                                <h3 style="margin-bottom: 8px;">Make Payment</h3>
+                                <p style="color: var(--text-muted);">Complete payment using your preferred payment method.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 20px; align-items: flex-start;">
+                            <div style="width: 50px; height: 50px; background: var(--gradient-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--bg-dark); font-weight: 700; flex-shrink: 0;">4</div>
+                            <div>
+                                <h3 style="margin-bottom: 8px;">Get QR Code</h3>
+                                <p style="color: var(--text-muted);">Receive a unique QR code to redeem your fuel at any Pamtech station.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: var(--bg-card); border-radius: var(--radius-lg); padding: 24px; margin-top: 30px; border: 1px solid rgba(212, 175, 55, 0.2);">
+                        <h3 style="margin-bottom: 16px; color: var(--primary-gold);"><i class="fas fa-info-circle"></i> Important Notice</h3>
+                        <ul style="color: var(--text-muted); padding-left: 20px; line-height: 1.8;">
+                            <li>QR codes are valid for 7 days from purchase</li>
+                            <li>Present QR code at the fuel station before dispensing</li>
+                            <li>Each QR code can only be used once</li>
+                            <li>For support, contact: fuel@pamtech.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal-overlay" id="payment-modal">
+        <div class="modal" style="max-width: 400px;">
+            <div class="modal-header">
+                <h3>Payment</h3>
+                <button class="modal-close" onclick="closePaymentModal()">&times;</button>
+            </div>
+            <div style="text-align: center; padding: 20px;">
+                <div class="spinner" style="margin: 0 auto 20px;"></div>
+                <p>Processing payment...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pamtech Automobile. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+    
+    <!-- Fuel Page Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let selectedFuel = 'petrol';
+            const fuelPrices = {
+                petrol: 650,
+                diesel: 750,
+                kerosene: 550
+            };
+            
+            // Fuel type selection
+            const fuelTypes = document.querySelectorAll('.fuel-type');
+            fuelTypes.forEach(type => {
+                type.addEventListener('click', () => {
+                    fuelTypes.forEach(t => t.classList.remove('active'));
+                    type.classList.add('active');
+                    selectedFuel = type.dataset.fuel;
+                    updateSummary();
+                });
+            });
+            
+            // Update summary when liters change
+            const litersInput = document.getElementById('fuel-liters');
+            litersInput.addEventListener('input', updateSummary);
+            
+            function updateSummary() {
+                const liters = parseInt(litersInput.value) || 0;
+                const price = fuelPrices[selectedFuel];
+                const total = liters * price;
+                
+                document.getElementById('summary-type').textContent = selectedFuel;
+                document.getElementById('summary-price').textContent = Pamtech.Utils.formatCurrency(price);
+                document.getElementById('summary-liters').textContent = liters + ' Liters';
+                document.getElementById('summary-total').textContent = Pamtech.Utils.formatCurrency(total);
+            }
+            
+            // Form submission
+            document.getElementById('fuel-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const liters = parseInt(litersInput.value);
+                const price = fuelPrices[selectedFuel];
+                const total = liters * price;
+                
+                // Show payment modal
+                document.getElementById('payment-modal').classList.add('active');
+                
+                // Simulate payment processing
+                setTimeout(() => {
+                    const result = Pamtech.FuelSystem.createTransaction({
+                        fuelType: selectedFuel,
+                        liters: liters,
+                        pricePerLiter: price,
+                        total: total
+                    });
+                    
+                    if (result.success) {
+                        document.getElementById('payment-modal').classList.remove('active');
+                        Pamtech.showNotification('Payment successful! Redirecting to QR code...', 'success');
+                        
+                        setTimeout(() => {
+                            window.location.href = `fuel-qr.html?id=${result.transaction.id}`;
+                        }, 1500);
+                    }
+                }, 2000);
+            });
+        });
+        
+        function closePaymentModal() {
+            document.getElementById('payment-modal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
